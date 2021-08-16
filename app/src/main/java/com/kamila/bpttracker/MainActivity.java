@@ -14,19 +14,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    Double tempWeek;
-    Double tempDaily;
-    int countWeek;
-    int countDaily;
-    TextView tvBtWeek;
-    TextView tvBtDaily;
+    Double tempWeek,tempDaily;
+    int countWeek,countDaily;
+    TextView tvBtWeek, tvBtDaily,tvBpWeek, tvBpDaily;
     String currentDate;
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -35,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvBtWeek = (TextView) findViewById(R.id.tvBtWeek);
-        tvBtDaily = (TextView) findViewById(R.id.tvBtDaily);
+        tvBtWeek = (TextView) findViewById(R.id.tvBpWeek);
+        tvBtDaily = (TextView) findViewById(R.id.tvBpDaily);
+        tvBpWeek = (TextView) findViewById(R.id.tvBpWeek);
+        tvBpDaily = (TextView) findViewById(R.id.tvBpDaily);
 
         tempWeek = 0.0;
         tempDaily = 0.0;
-
         countDaily = 0;
         countWeek = 0;
 
@@ -56,17 +53,12 @@ public class MainActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         System.out.println("KKKKKKKKKKKKK" + document.getId());
                         System.out.println("firestore" + document.getData());
-
-
                         String docDate = (String) document.get("date");
                         currentDate = df.format(new Date());
                         if (currentDate.equals(docDate)) {
-
                             countDaily++;
                             tempDaily = tempDaily + Double.parseDouble((String) document.get("temperature"));
-
                         }
-
                         tempWeek = tempWeek + Double.parseDouble((String) document.get("temperature"));
                         countWeek++;
                     }
@@ -78,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
