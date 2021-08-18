@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
         String email = sharedPreferences.getString("email", "");
-        System.out.println("email "  +email );;
-
+        System.out.println("email " + email);
+        ;
 
 
         db.collection(email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
                             tempDaily = tempDaily + Double.parseDouble(temp);
                             bloodPDaily = bloodPDaily + Double.parseDouble(bloodP);
                         }
-                        tempWeek = tempWeek + Double.parseDouble((String)document.get("temperature"));
-                        bloodPWeek = bloodPWeek + Double.parseDouble((String)document.get("bloodpressure"));
+                        tempWeek = tempWeek + Double.parseDouble((String) document.get("temperature"));
+                        bloodPWeek = bloodPWeek + Double.parseDouble((String) document.get("bloodpressure"));
                         countTempWeek++;
                         countBloodPWeek++;
                     }
