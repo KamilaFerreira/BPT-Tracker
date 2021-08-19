@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 String textEmail = edtEmail.getText().toString();
                 String textPassword = edtPassword.getText().toString();
                 //here the code will validate if the User fill up all the fields, case the fields are not filled, the app will display a message
@@ -109,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
     //this method Opens the Main Screen
 
     private void openMainScreen() {
@@ -116,8 +116,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("email" , user.getEmail());
         editor.apply();
-
-
 
         startActivity(new Intent(this, MainActivity.class));
         finish(); //this method closes the Login Activity

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,14 +57,17 @@ public class BloodPressBodyTemp extends AppCompatActivity {
         floatingActionButCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String bodyTempField = editTextBodyTemp.getText().toString();
                 String bloodPressField = editTextBloodPress.getText().toString();
                 dateSelected = sdf.format(new Date(calendarView.getDate()));
+
 
                 Map<String, String> data = new HashMap<>();
                 data.put("bloodpressure" , bloodPressField);
                 data.put("temperature" , bodyTempField);
                 data.put("date" , dateSelected );
+
 
                 db.collection(email).document().set(data, SetOptions.merge())
                         .addOnFailureListener(new OnFailureListener() {
@@ -85,6 +89,38 @@ public class BloodPressBodyTemp extends AppCompatActivity {
 
     }
 
+    private void validateInputNumbers() {
+
+        String validBodyTemp = editTextBodyTemp.getText().toString();
+        String validBloodP = editTextBloodPress.getText().toString();
+        String validDate = String.valueOf(calendarView.getDate());
+
+
+        if (validBodyTemp.isEmpty()) {
+            if (validBloodP.isEmpty()) {
+                if(validDate.isEmpty()){
+
+
+                }else{
+                    Toast.makeText(BloodPressBodyTemp.this, "Please, Select the Date field", //Toast displays a message to user fill up the value
+                            Toast.LENGTH_LONG).show();
+
+                }
+
+
+            } else {
+                Toast.makeText(BloodPressBodyTemp.this, "Please, fill up Blood Pressure field", //Toast displays a message to user fill up the value
+                        Toast.LENGTH_LONG).show();
+
+            }
+
+        } else {
+            Toast.makeText(BloodPressBodyTemp.this, "Please, fill up Body Temperature field", //Toast displays a message to user fill up the value
+                    Toast.LENGTH_LONG).show();
+
+
+        }
+    }
 
     private void voltar(){
         startActivity(new Intent(this, MainActivity.class));
