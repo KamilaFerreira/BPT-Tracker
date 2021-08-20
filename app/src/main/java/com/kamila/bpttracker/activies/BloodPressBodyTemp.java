@@ -3,7 +3,6 @@ package com.kamila.bpttracker.activies;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -74,14 +73,14 @@ public class BloodPressBodyTemp extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 System.out.println("Data Not Saved "+e);
-                                voltar();
+                                backToMainActivity();
                             }
                         })
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 System.out.println("Data Saved");
-                                voltar();
+                                backToMainActivity();
                             }
                         });
             }
@@ -122,7 +121,7 @@ public class BloodPressBodyTemp extends AppCompatActivity {
         }
     }
 
-    private void voltar(){
+    private void backToMainActivity(){
         startActivity(new Intent(this, MainActivity.class));
         finish(); //this method closes the Login Activity
     }

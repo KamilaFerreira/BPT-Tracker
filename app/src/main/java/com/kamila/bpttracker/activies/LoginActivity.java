@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         btnLogin = (Button) findViewById(R.id.btnLogin);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
     //this method Opens the Main Screen
 
     private void openMainScreen() {
+        //authentication.signOut();
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("email" , user.getEmail());
